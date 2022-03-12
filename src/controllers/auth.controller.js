@@ -29,9 +29,14 @@ const refreshTokens = catchAsync(async (req, res) => {
   res.send({ ...tokens });
 });
 
+const aboutMe = catchAsync((req, res) => {
+  res.status(httpStatus.CREATED).send({ user: req.user });
+});
+
 module.exports = {
   register,
   login,
   logout,
   refreshTokens,
+  aboutMe,
 };

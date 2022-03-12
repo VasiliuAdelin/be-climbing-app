@@ -10,6 +10,8 @@ router.post(
   authController.register
 );
 
+router.get("/me", auth(), authController.aboutMe);
+
 router.post("/login", validate(authValidation.login), authController.login);
 router.post("/logout", validate(authValidation.logout), authController.logout);
 router.post(
