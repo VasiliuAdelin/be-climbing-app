@@ -8,7 +8,8 @@ const { ROLES_DEFINITION } = require("../../config/roles");
 router
   .route("/")
   .get(
-    auth(ROLES_DEFINITION.GET_USERS),
+    // auth(ROLES_DEFINITION.GET_USERS),
+    auth(),
     validate(userValidation.getUsers),
     userController.getUsers
   )

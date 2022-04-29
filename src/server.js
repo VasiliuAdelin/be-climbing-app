@@ -1,15 +1,7 @@
-const express = require("express");
-const helmet = require("helmet");
 const mongoose = require("mongoose");
-const cors = require("cors");
-const xss = require("xss-clean");
-const httpStatus = require("http-status");
 const config = require("./config/getEnv");
-const app = require('./app')
-const logger = require('./config/logger');
-const routes = require("./routes/v1");
-const mongoSanitize = require("express-mongo-sanitize");
-const ApiError = require("./utils/ApiError");
+const app = require("./app");
+const logger = require("./config/logger");
 
 let server;
 mongoose

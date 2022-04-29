@@ -1,11 +1,9 @@
 const express = require("express");
 const helmet = require("helmet");
 const passport = require("passport");
-const mongoose = require("mongoose");
 const cors = require("cors");
 const xss = require("xss-clean");
 const httpStatus = require("http-status");
-const config = require("./config/getEnv");
 const morgan = require("./config/morgan");
 const { jwtStrategy } = require("./config/passport");
 const routes = require("./routes/v1");
@@ -16,7 +14,6 @@ const {
   errorHandler,
   convertToErrorMiddleware,
 } = require("./middlewares/error");
-const logger = require("./config/logger");
 
 const app = express();
 
@@ -43,19 +40,19 @@ app.options("*", cors());
 app.use(passport.initialize());
 passport.use("jwt", jwtStrategy);
 
-app.get("/", (req, res) => {
+app.get("/", (_, res) => {
   res.send({
-    message: "Welcome",
+    message: "Welcome to our API",
   });
 });
 
-app.use("/v1", routes);
+app.use("/api/v1", routes);
 
 app.use((_, __, next) => {
   next(new ApiError(httpStatus.NOT_FOUND, "Route Not Found"));
 });
 
-// if needed convert to standar erro by ApiError with statusCode and message
+// if needed convert to standard error by ApiError with statusCode and message
 app.use(convertToErrorMiddleware);
 
 app.use(errorHandler);

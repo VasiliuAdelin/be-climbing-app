@@ -40,8 +40,7 @@ const errorHandler = (err, req, res, next) => {
   const response = {
     code: statusCode,
     message,
-    ...(errors && errors.length > 0 && {errors}),
-    ...(config.env === 'development' && { stack: err.stack }),
+    ...(errors && errors.length > 0 && { errors }),
   };
 
   if (config.env === "development") {
