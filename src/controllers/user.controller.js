@@ -2,7 +2,7 @@ const httpStatus = require("http-status");
 const _ = require("lodash");
 const ApiError = require("../utils/ApiError");
 const catchAsync = require("../utils/catchAsync");
-const { userService } = require("../services");
+const { userService, commentService } = require("../services");
 
 const createUser = catchAsync(async (req, res) => {
   const user = await userService.createUser(req.body);
@@ -26,9 +26,65 @@ const getUserById = catchAsync(async (req, res) => {
   res.status(httpStatus.OK).send(user);
 });
 
+const getUserProfile = catchAsync(async (req, res) => {
+  console.log(req.params);
+  const user = await userService.getUserById(req.params.id);
+  if (!user) {
+    throw new ApiError(httpStatus.NOT_FOUND, httpStatus[httpStatus.NOT_FOUND], [
+      "User not found",
+    ]);
+  }
+
+  const {
+    __v,
+    _id,
+    address,
+    city,
+    country,
+    createdAt,
+    description,
+    email,
+    id,
+    imageLink,
+    isEmailVerified,
+    name,
+    position,
+    postalCode,
+    role,
+    updatedAt,
+    username,
+    mainImage
+  } = user;
+
+  const comments = await commentService.getCommentByEntityId(user.id);
+
+  const payload = {
+    id: _id,
+    address,
+    city,
+    country,
+    createdAt,
+    description,
+    email,
+    id,
+    imageLink,
+    isEmailVerified,
+    name,
+    position,
+    postalCode,
+    role,
+    updatedAt,
+    username,
+    comments,
+    mainImage
+  };
+
+  res.status(httpStatus.OK).send(payload);
+});
+
 const updateUser = catchAsync(async (req, res) => {
   const user = await userService.updateUserById(req.params.id, req.body);
-  res.status(httpStatus.OK).send({user});
+  res.status(httpStatus.OK).send({ user });
 });
 
 const deleteUser = catchAsync(async (req, res) => {
@@ -40,6 +96,7 @@ module.exports = {
   createUser,
   getUsers,
   getUserById,
+  getUserProfile,
   updateUser,
   deleteUser,
 };

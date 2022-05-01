@@ -4,3 +4,4 @@ module.exports.authService = require("./auth.service");
 module.exports.newsPostService = require("./newsPost.service");
 module.exports.postService = require("./post.service");
 module.exports.commentService = require("./comment.service");
+module.exports.eventService = require("./event.service");

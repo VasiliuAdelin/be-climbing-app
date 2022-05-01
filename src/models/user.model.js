@@ -50,6 +50,10 @@ const userSchema = mongoose.Schema(
       type: String,
       default: "https://via.placeholder.com/150",
     },
+    mainImage: {
+      type: String,
+      default: "https://via.placeholder.com/2000",
+    },
     position: {
       type: String,
       default: "employee",

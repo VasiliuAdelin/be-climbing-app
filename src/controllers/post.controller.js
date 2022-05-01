@@ -60,6 +60,7 @@ const getPosts = catchAsync(async (req, res) => {
     "descripton",
     "isHidden",
     "isValidated",
+    "author"
   ]);
   const options = _.pick(req.query, ["sortBy", "limit", "page"]);
 

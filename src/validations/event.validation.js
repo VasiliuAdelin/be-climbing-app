@@ -1,18 +1,27 @@
 const Joi = require("joi");
 const { objectId } = require("./custom.validation");
 
-const createPost = {
+const createEvent = {
   body: Joi.object().keys({
     title: Joi.string().required(),
+    month: Joi.number().required(),
+    year: Joi.number().required(),
     description: Joi.string().required(),
+    typeOfEvent: Joi.string().required(),
+    duration: Joi.string().required(),
+    eventDate: Joi.string().required(),
     author: Joi.required().custom(objectId),
-    location: Joi.string(),
-    geoLocation: Joi.string(),
+    location: Joi.object().keys({
+      city: Joi.string(),
+      country: Joi.string(),
+      address: Joi.string(),
+      geoLocation: Joi.string(),
+    }),
     assets: Joi.array(),
   }),
 };
 
-const getPosts = {
+const getEvents = {
   query: Joi.object().keys({
     title: Joi.string(),
     sortBy: Joi.string(),
@@ -21,40 +30,50 @@ const getPosts = {
     isHidden: Joi.string(),
     isValidated: Joi.string(),
     author: Joi.string().custom(objectId),
+    month: Joi.number(),
+    year: Joi.number(),
   }),
 };
 
-const getPost = {
+const getEvent = {
   params: Joi.object().keys({
     id: Joi.string().custom(objectId),
   }),
 };
 
-const updatePost = {
+const updateEvent = {
   params: Joi.object().keys({
     id: Joi.required().custom(objectId),
   }),
   body: Joi.object().keys({
     title: Joi.string(),
+    month: Joi.number(),
+    year: Joi.number(),
     description: Joi.string(),
+    typeOfEvent: Joi.string(),
+    duration: Joi.string(),
+    eventDate: Joi.string(),
     author: Joi.custom(objectId),
-    location: Joi.string(),
-    geoLocation: Joi.string(),
+    location: Joi.object().keys({
+      city: Joi.string(),
+      country: Joi.string(),
+      address: Joi.string(),
+      geoLocation: Joi.string(),
+    }),
     assets: Joi.array(),
-    likes: Joi.array()
   }),
 };
 
-const deletePost = {
+const deleteEvent = {
   params: Joi.object().keys({
     id: Joi.required().custom(objectId),
   }),
 };
 
 module.exports = {
-  createPost,
-  getPosts,
-  getPost,
-  updatePost,
-  deletePost,
+  createEvent,
+  getEvents,
+  getEvent,
+  updateEvent,
+  deleteEvent,
 };

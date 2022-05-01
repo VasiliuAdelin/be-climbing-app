@@ -28,12 +28,12 @@ router
   );
 
 router
+  .route("/profile/:id")
+  .get(validate(userValidation.getUser), userController.getUserProfile);
+
+router
   .route("/:id")
-  .get(
-    auth(ROLES_DEFINITION.GET_USERS),
-    validate(userValidation.getUser),
-    userController.getUserById
-  )
+  .get(validate(userValidation.getUser), userController.getUserById)
   .patch(
     auth(ROLES_DEFINITION.UPDATE_USER),
     validate(userValidation.updateUser),
