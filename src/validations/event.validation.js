@@ -61,6 +61,8 @@ const updateEvent = {
       geoLocation: Joi.string(),
     }),
     assets: Joi.array(),
+    participants: Joi.array(),
+    interested: Joi.array(),
   }),
 };
 

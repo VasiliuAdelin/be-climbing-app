@@ -4,6 +4,7 @@ const userRoute = require("./user.route");
 const postRoute = require("./post.route");
 const commentRoute = require("./comment.route");
 const eventRoute = require("./event.route");
+const cragRoute = require("./crag.route");
 const docsRoute = require("./docs.route");
 const config = require("../../config/getEnv");
 
@@ -27,6 +28,10 @@ const routes = [
   {
     path: "/events",
     route: eventRoute,
+  },
+  {
+    path: "/crags",
+    route: cragRoute,
   },
 ];
 
