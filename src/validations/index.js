@@ -5,3 +5,4 @@ module.exports.postValidation = require("./post.validation");
 module.exports.commentValidation = require("./comment.validation");
 module.exports.eventValidation = require("./event.validation");
 module.exports.cragValidation = require("./crag.validation");
+module.exports.trainerValidation = require("./trainer.validation");

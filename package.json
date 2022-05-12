@@ -6,7 +6,8 @@
   "scripts": {
     "dev": "nodemon src/server.js",
     "start": "node src/server.js",
-    "heroku:deploy":"git push heroku master"
+    "heroku:deploy":"git push heroku master",
+    "heroku:logs":"heroku logs --tail"
   },
   "author": "Vasiliu Adelin",
   "license": "MIT",
