@@ -25,7 +25,7 @@ const getEvents = {
   query: Joi.object().keys({
     title: Joi.string(),
     sortBy: Joi.string(),
-    limmit: Joi.string(),
+    limit: Joi.string(),
     page: Joi.string(),
     isHidden: Joi.string(),
     isValidated: Joi.string(),
