@@ -3,6 +3,7 @@ const _ = require("lodash");
 const ApiError = require("../utils/ApiError");
 const catchAsync = require("../utils/catchAsync");
 const { trainerService } = require("../services");
+const { Post, Comment } = require("../models");
 
 const createTrainer = catchAsync(async (req, res) => {
   const trainer = await trainerService.createTrainer(req.body);

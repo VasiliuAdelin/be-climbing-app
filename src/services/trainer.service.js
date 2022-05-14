@@ -10,7 +10,7 @@ const ApiError = require("../utils/ApiError");
 const createTrainer = async (trainer) => Trainer.create(trainer);
 
 const getTrainers = async (filter, options) => {
-  return Trainer.paginate(filter, options);
+  return Trainer.paginate(filter, options, 'author', ["name", "imageLink"]);
 };
 
 /**

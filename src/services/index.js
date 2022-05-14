@@ -7,3 +7,4 @@ module.exports.commentService = require("./comment.service");
 module.exports.eventService = require("./event.service");
 module.exports.cragService = require("./crag.service");
 module.exports.trainerService = require("./trainer.service");
+module.exports.topicService = require("./topic.service");

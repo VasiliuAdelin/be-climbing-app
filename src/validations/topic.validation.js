@@ -1,18 +1,19 @@
 const Joi = require("joi");
 const { objectId } = require("./custom.validation");
 
-const createTrainer = {
+const createTopic = {
   body: Joi.object().keys({
     title: Joi.string().required(),
-    categories: Joi.array(),
-    description: Joi.string().required(),
+    name: Joi.string().required(),
+    body: Joi.string().required(),
     author: Joi.required().custom(objectId),
   }),
 };
 
-const getTrainers = {
+const getTopics = {
   query: Joi.object().keys({
     title: Joi.string(),
+    name: Joi.string(),
     sortBy: Joi.string(),
     limit: Joi.string(),
     page: Joi.string(),
@@ -21,34 +22,35 @@ const getTrainers = {
   }),
 };
 
-const getTrainer = {
+const getTopic = {
   params: Joi.object().keys({
     id: Joi.string().custom(objectId),
   }),
 };
 
-const updateTrainer = {
+const updateTopic = {
   params: Joi.object().keys({
     id: Joi.required().custom(objectId),
   }),
   body: Joi.object().keys({
     title: Joi.string(),
-    categories: Joi.array(),
-    description: Joi.string(),
+    name: Joi.string(),
+    body: Joi.string(),
     author: Joi.custom(objectId),
+    views: Joi.number()
   }),
 };
 
-const deleteTrainer = {
+const deleteTopic = {
   params: Joi.object().keys({
     id: Joi.required().custom(objectId),
   }),
 };
 
 module.exports = {
-  createTrainer,
-  getTrainers,
-  getTrainer,
-  updateTrainer,
-  deleteTrainer,
+  createTopic,
+  getTopics,
+  getTopic,
+  updateTopic,
+  deleteTopic,
 };

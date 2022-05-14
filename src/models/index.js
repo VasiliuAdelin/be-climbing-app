@@ -7,3 +7,4 @@ module.exports.Comment = require("./comment.model");
 module.exports.Event = require("./event.model");
 module.exports.Crag = require("./crag.model");
 module.exports.Trainer = require("./trainer.model");
+module.exports.Topic = require("./topic.model");
