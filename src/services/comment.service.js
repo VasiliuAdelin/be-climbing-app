@@ -16,7 +16,7 @@ const createComment = async (comment) => {
  * @returns {Promise<Comment>}
  */
 const getComments = async () => {
-  const comments = await Comment.find({});
+  const comments = await Comment.find({}).populate("author", ["name", "imageLink"]);
   return comments;
 };
 

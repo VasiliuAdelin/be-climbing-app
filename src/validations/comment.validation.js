@@ -21,6 +21,8 @@ const updateComment = {
   }),
   body: Joi.object().keys({
     description: Joi.string(),
+    isHidden: Joi.boolean(),
+    isValidated: Joi.boolean()
   }),
 };
 

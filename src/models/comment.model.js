@@ -15,6 +15,14 @@ const commentSchema = mongoose.Schema(
       type: mongoose.SchemaTypes.ObjectId,
       ref: "User",
     },
+    isValidated: {
+      type: Boolean,
+      default: false,
+    },
+    isHidden: {
+      type: Boolean,
+      default: true,
+    },
   },
   {
     timestamps: true,
