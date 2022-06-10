@@ -23,6 +23,11 @@ const getCrags = async (filter, options) => {
   return crags;
 };
 
+const getCragsByField = async (field, value) => {
+  const crags = await Crag.find({[field]:value})
+  return crags
+}
+
 /**
  * Get Crag by ID
  * @param {ObjectId} id
@@ -79,6 +84,7 @@ module.exports = {
   createCrag,
   getCrags,
   getCragById,
+  getCragsByField,
   updateCragById,
   deleteCragById,
   deleteAll,

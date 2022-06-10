@@ -2,7 +2,7 @@ const httpStatus = require("http-status");
 const _ = require("lodash");
 const ApiError = require("../utils/ApiError");
 const catchAsync = require("../utils/catchAsync");
-const { userService, commentService } = require("../services");
+const { userService, commentService, postService, cragService } = require("../services");
 
 const createUser = catchAsync(async (req, res) => {
   const user = await userService.createUser(req.body);
@@ -27,7 +27,6 @@ const getUserById = catchAsync(async (req, res) => {
 });
 
 const getUserProfile = catchAsync(async (req, res) => {
-  console.log(req.params);
   const user = await userService.getUserById(req.params.id);
   if (!user) {
     throw new ApiError(httpStatus.NOT_FOUND, httpStatus[httpStatus.NOT_FOUND], [
@@ -57,6 +56,8 @@ const getUserProfile = catchAsync(async (req, res) => {
   } = user;
 
   const comments = await commentService.getCommentByEntityId(user.id);
+  const ascentsResult = await cragService.getCragsByField('ascents', user.id)
+  const interestedResult = await cragService.getCragsByField('interested', user.id)
 
   const payload = {
     id: _id,
@@ -76,7 +77,9 @@ const getUserProfile = catchAsync(async (req, res) => {
     updatedAt,
     username,
     comments,
-    mainImage
+    mainImage,
+    totalAscents: ascentsResult.length || 0,
+    totalInterested: interestedResult.length || 0
   };
 
   res.status(httpStatus.OK).send(payload);

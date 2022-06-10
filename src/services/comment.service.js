@@ -35,7 +35,7 @@ const getCommentById = async (id) => {
  * @returns {Promise<Comment>}
  */
 const getCommentByEntityId = async (entityId) => {
-  return Comment.find({ entityId }).populate("author", ["name", "imageLink"]);
+  return Comment.find({ entityId,  isHidden: false, isValidated: true }).populate("author", ["name", "imageLink"]);
 };
 
 /**
