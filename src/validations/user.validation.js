@@ -51,6 +51,8 @@ const updateUser = {
     username: Joi.string(),
     imageLink: Joi.string(),
     address: Joi.string(),
+    position: Joi.string(),
+    phone: Joi.string(),
     city: Joi.string(),
     country: Joi.string(),
     postalCode: Joi.string(),

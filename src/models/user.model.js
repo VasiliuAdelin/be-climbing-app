@@ -56,7 +56,11 @@ const userSchema = mongoose.Schema(
     },
     position: {
       type: String,
-      default: "employee",
+      default: "",
+    },
+    phone: {
+      type: String,
+      default: "-",
     },
     address: {
       type: String,

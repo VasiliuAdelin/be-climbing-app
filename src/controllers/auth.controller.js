@@ -20,7 +20,9 @@ const login = catchAsync(async (req, res) => {
 const logout = catchAsync(async (req, res) => {
   const { refreshToken } = req.body;
   await authService.logout(refreshToken);
-  res.status(httpStatus.NO_CONTENT).send();
+  res.status(httpStatus.OK).send({
+    status: 'Success'
+  });
 });
 
 const refreshTokens = catchAsync(async (req, res) => {

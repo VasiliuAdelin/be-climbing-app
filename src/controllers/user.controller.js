@@ -48,6 +48,7 @@ const getUserProfile = catchAsync(async (req, res) => {
     isEmailVerified,
     name,
     position,
+    phone,
     postalCode,
     role,
     updatedAt,
@@ -72,6 +73,7 @@ const getUserProfile = catchAsync(async (req, res) => {
     isEmailVerified,
     name,
     position,
+    phone,
     postalCode,
     role,
     updatedAt,
@@ -79,7 +81,9 @@ const getUserProfile = catchAsync(async (req, res) => {
     comments,
     mainImage,
     totalAscents: ascentsResult.length || 0,
-    totalInterested: interestedResult.length || 0
+    totalInterested: interestedResult.length || 0,
+    ascents:ascentsResult,
+    interested:interestedResult
   };
 
   res.status(httpStatus.OK).send(payload);
